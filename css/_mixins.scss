@@ -1,0 +1,24 @@
+@mixin flexCenter($direction: row, $wrap: wrap) {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-flow: $direction $wrap;
+}
+
+$breakpoints: (
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	xl: 1120px,
+	xxl: 1600px
+);
+
+@mixin screen-size($size) {
+	@each $breakpoint, $value in $breakpoints {
+		@if $size == $breakpoint {
+			@media screen and (min-width: $value) {
+				@content;
+			}
+		}
+	}
+}
